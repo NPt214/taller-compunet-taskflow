@@ -12,7 +12,7 @@
        Cuando instales canvas-confetti con npm, descomenta y adapta el importmap
        para que tu navegador pueda resolver: import confetti from 'canvas-confetti';
        =================================================================== -->
-  <!--
+  
   <script type="importmap">
     {
       "imports": {
@@ -20,16 +20,14 @@
       }
     }
   </script>
-  -->
+ 
 </head>
-
 <body>
   <main class="container">
     <header class="app-header">
       <h1>TaskFlow</h1>
       <p class="subtitle">Taller Práctico: Estado, Filtros y Librerías Externas</p>
     </header>
-
     <form id="task-form">
       <input id="txt" type="text" placeholder="¿Qué necesitas hacer hoy?" autocomplete="off" required />
       <button type="submit" id="add-btn">Agregar</button>

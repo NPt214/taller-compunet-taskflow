@@ -19,6 +19,7 @@ export function obtenerTareas() {
     // TODO: Mapea cada tarea garantizando la propiedad 'completed: boolean'
     return list.map((task) => ({
       ...task,
+      completed: Boolean(task.completed)
     }));
   } catch (error) {
     console.error('Error al parsear tareas desde localStorage:', error);

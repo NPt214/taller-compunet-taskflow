@@ -39,7 +39,16 @@ function dispararConfeti() {
  * @param {number} id
  */
 function toggleTarea(id) {
-  // Escribe aquí tu implementación
+  const tareas = obtenerTareas()
+  const tarea = tarea.find(t => t.id == id);
+  if (tarea != undefined){
+    tarea.completed = !tarea.undefined
+    if (tarea.completed){
+      dispararConfeti();
+    }
+    guardarTareas(tareas);
+    render();
+  }
 }
 
 /**
@@ -47,8 +56,10 @@ function toggleTarea(id) {
  * @param {number} id
  */
 function eliminarTarea(id) {
-  //TODO agrega funcionalidad de eliminar tarea sin modificar el storage.js
-
+  const tareas = obtenerTareas()
+  const tarea = tareas.filter(t => t.id !== id);
+  guardarTareas(tarea);
+  render();
 }
 
 /**
@@ -91,28 +102,37 @@ export function render() {
     const li = document.createElement('li');
     // TODO (Fase 1): Agrega la clase 'completed' al elemento si task.completed es true
     li.className = 'task-item';
-
+    if (task.completed) {
+    li.classList.add('completed');
+  }
+    
     const leftDiv = document.createElement('div');
     leftDiv.className = 'task-left';
 
     // TODO (Fase 1): Crea un <input type="checkbox" class="task-checkbox">
     // - asígnale checked = task.completed
     // - agrega un event listener 'change' que invoque toggleTarea(task.id)
+    const checkbox = document.createElement('input')
+    checkbox.classname = 'task-checkbox';
+    checkbox.checked = task.completed;
+    checkbox.type = 'checkbox';
+    checkbox.addEventListener('change', () => toggleTarea(task.id));
+
 
     const span = document.createElement('span');
     span.className = 'task-text';
     span.textContent = task.txt;
 
     // Agrega el checkbox y el span al contenedor izquierdo:
-
     leftDiv.appendChild(span);
+    leftDiv.appendChild(checkbox);
 
     const deleteBtn = document.createElement('button');
     deleteBtn.className = 'delete-btn';
     deleteBtn.textContent = 'Eliminar';
     deleteBtn.type = 'button';
     // Agrega acción de borrado usando eliminarTarea(task.id);
-
+    deleteBtn.addEventListener('click', () => eliminarTarea(task.id));
 
     li.appendChild(leftDiv);
     li.appendChild(deleteBtn);
