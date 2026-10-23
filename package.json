@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "live-server src --mount=/node_modules:./node_modules --port=3000"
+    "start": "live-server src --mount=/node_modules:./node_modules --port=3000 --no-browser"
   },
   "devDependencies": {
     "live-server": "^1.2.2"
